@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>dex1_1_service</name>
+  <version>1.0.1</version>
+  <description>Unitree Dex1-1 gripper server: bridges the gripper motors on USB serial to rt/dex1/{left,right}/{cmd,state}.</description>
+  <maintainer email="karankha@cs.cmu.edu">EigenVector Robotics</maintainer>
+  <license>BSD-3-Clause</license>
+  <url type="repository">https://github.com/unitreerobotics/dex1_1_service</url>
+
+  <buildtool_depend>cmake</buildtool_depend>
+
+  <depend>libboost-program-options-dev</depend>
+  <depend>libserialport-dev</depend>
+  <depend>yaml-cpp</depend>
+  <depend>spdlog</depend>
+  <depend>fmt</depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+</package>
