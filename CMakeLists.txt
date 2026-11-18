@@ -47,3 +47,18 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 add_executable(dex1_1_gripper_server main.cpp)
 add_executable(test_dex1_1_gripper_server test/test_gripper.cpp)
 add_executable(test_dex1_1_gripper_server2 test/test_gripper2.cpp)
+
+# Install for colcon. The binaries find the motor SDK next to them, in ../lib.
+if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "aarch64")
+  set(MOTOR_SDK lib/libUnitreeMotorSDK_Arm64.so)
+else()
+  set(MOTOR_SDK lib/libUnitreeMotorSDK_Linux64.so)
+endif()
+
+set_target_properties(dex1_1_gripper_server test_dex1_1_gripper_server test_dex1_1_gripper_server2
+  PROPERTIES INSTALL_RPATH "$ORIGIN/../lib"
+)
+install(TARGETS dex1_1_gripper_server test_dex1_1_gripper_server test_dex1_1_gripper_server2
+  RUNTIME DESTINATION bin
+)
+install(FILES ${MOTOR_SDK} DESTINATION lib)
